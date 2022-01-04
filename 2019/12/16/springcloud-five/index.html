@@ -1,0 +1,1820 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="认识SpringCloud(五)—常用配置详解, 清风逐月夜半时">
+    <meta name="description" content="一、Eureka
+
+
+属性名
+说明
+默认值
+
+
+
+
+eureka.server.enable-self-preservation
+关闭注册中心的保护机制，Eureka 会统计15分钟之内心跳失败的比例低于85%将会触发保护机制，不剔除服务提">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>认识SpringCloud(五)—常用配置详解 | 清风逐月夜半时</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">清风逐月夜半时</span>
+                </a>
+            </div>
+            
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+              <a href="" class="waves-effect waves-light">
+                
+                  <i class="fa fa fa-book"></i>
+                
+                <span>媒体</span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </a>
+
+            <ul class="sub-nav menus_item_child ">
+              
+                <li> 
+                  <a href="/books" >
+                    
+                      <i class="fa fa fa-book" style="margin-top: -20px;"></i>
+                    
+                    <span>书单</span>
+                  </a>
+                </li>
+              
+                <li> 
+                  <a href="/movies" >
+                    
+                      <i class="fa fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>电影</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">清风逐月夜半时</div>
+        <div class="logo-desc">
+            
+            把努力当成一种习惯
+            
+        </div>
+    </div>
+
+    
+
+    <!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+        
+            <li class="m-nav-item">
+                    
+                        <a href="/" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-home"></i>
+                            
+                            首页
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/tags" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-tags"></i>
+                            
+                            标签
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/categories" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-bookmark"></i>
+                            
+                            分类
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/archives" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-archive"></i>
+                            
+                            归档
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/about" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-user-circle-o"></i>
+                            
+                            关于我
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/friends" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-address-book"></i>
+                            
+                            友情链接
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="javascript:;">
+                                
+                                <i class="fa fa-fw fa fa-book"></i>
+                                
+                                媒体
+                                <span class="m-icon"><i class="fa fa-chevron-right"></i></span>
+                        </a>
+                    <ul>
+                      
+                        <li> 
+                          <a href="/books" >
+                               
+                                <i class="fa fa fa-book" style="left: 25px; position: absolute;"></i>
+                           
+                           <span>书单</span>
+                          </a>
+                        </li>
+                      
+                        <li> 
+                          <a href="/movies" >
+                               
+                                <i class="fa fa fa-film" style="left: 25px; position: absolute;"></i>
+                           
+                           <span>电影</span>
+                          </a>
+                        </li>
+                       
+                    </ul>
+                  
+                </li>
+            
+    
+            
+            <li><div class="divider"></div></li>
+            <li>
+                <a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="waves-effect waves-light" target="_blank">
+                    <i class="fa fa-github-square fa-fw"></i>Fork Me
+                </a>
+            </li>
+          
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        认识SpringCloud(五)—常用配置详解
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/SpringCloud/" target="_blank">
+                                <span class="chip bg-color">SpringCloud</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/SpringCloud/" class="post-category" target="_blank">
+                                SpringCloud
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-12-16
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2,943
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        12 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="一、Eureka"><a href="#一、Eureka" class="headerlink" title="一、Eureka"></a>一、Eureka</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eureka.server.enable-self-preservation</td>
+<td>关闭注册中心的保护机制，Eureka 会统计15分钟之内心跳失败的比例低于85%将会触发保护机制，不剔除服务提供者，如果关闭服务注册中心将不可用的实例正确剔除</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eureka.instance.prefer-ip-address</td>
+<td>不使用主机名来定义注册中心的地址，而使用IP地址的形式，如果设置eureka.instance.ip-address 属性，则使用该属性配置的IP，否则自动获取除环路IP外的第一个IP地址</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.ip-address</td>
+<td>IP地址</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.hostname</td>
+<td>设置当前实例的主机名称</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.lease-renewal-interval-in-seconds</td>
+<td>定义服务续约任务（心跳）的调用间隔，单位：秒</td>
+<td>30</td>
+</tr>
+<tr>
+<td>eureka.instance.lease-expiration-duration-in-seconds</td>
+<td>定义服务失效的时间，单位：秒</td>
+<td>90</td>
+</tr>
+<tr>
+<td>eureka.instance.status-page-url-path</td>
+<td>状态页面的URL，相对路径，默认使用 HTTP 访问，如果需要使用 HTTPS则需要使用绝对路径配置</td>
+<td>/info</td>
+</tr>
+<tr>
+<td>eureka.instance.status-page-url</td>
+<td>状态页面的URL，绝对路径</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.health-check-url-path</td>
+<td>健康检查页面的URL，相对路径，默认使用 HTTP 访问，如果需要使用 HTTPS则需要使用绝对路径配置</td>
+<td>/health</td>
+</tr>
+<tr>
+<td>eureka.client.service-url</td>
+<td>指定服务注册中心地址，类型为 HashMap，并设置有一组默认值，默认的Key为 defaultZone；如果服务注册中心为高可用集群时，多个注册中心地址以逗号分隔如果服务注册中心加入了安全验证，这里配置的地址格式为： http://:@localhost:8761/eureka 其中 为安全校验的用户名； 为该用户的密码</td>
+<td><a href="http://localhost:8761/eureka" target="_blank" rel="noopener">http://localhost:8761/eureka</a></td>
+</tr>
+<tr>
+<td>eureka.client.fetch-registery</td>
+<td>检索服务</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.registery-fetch-interval-seconds</td>
+<td>从Eureka服务器端获取注册信息的间隔时间，单位：秒</td>
+<td>30</td>
+</tr>
+<tr>
+<td>eureka.client.allow-redirects</td>
+<td>指示服务器是否可以将客户端请求重定向到备份服务器/集群</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eureka.client.availability-zones</td>
+<td>获取此实例所在区域的可用性区域列表</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.backup-registry-impl</td>
+<td>获取执行BackupRegistry的实现的名称</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.cache-refresh-executor-exponential-back-off-bound</td>
+<td>缓存刷新执行者指数退出相关属性</td>
+<td>10</td>
+</tr>
+<tr>
+<td>eureka.client.cache-refresh-executor-thread-pool-size</td>
+<td>cacheRefreshExecutor初始化的线程池大小</td>
+<td>2</td>
+</tr>
+<tr>
+<td>eureka.client.client-data-accept</td>
+<td>EurekaAccept客户端数据接受名称</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.disable-delta</td>
+<td>指示eureka客户端是否应该禁用提取delta</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eureka.client.dollar-replacement</td>
+<td>在eureka服务器的序列化/反序列化信息期间，获取Dollar符号<code>$ &lt;/ code&gt;</code>的替换字符串</td>
+<td>_</td>
+</tr>
+<tr>
+<td>eureka.client.enabled</td>
+<td>标记是否启用Eureka客户端</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.escape-char-replacement</td>
+<td>在eureka服务器的序列化/反序列化信息期间获取下划线符号<code>_&lt;/ code&gt;</code>的替换字符串</td>
+<td>__</td>
+</tr>
+<tr>
+<td>eureka.client.eureka-connection-idle-timeout-seconds</td>
+<td>表示到eureka服务器的HTTP连接可以在关闭之前保持空闲状态的时间（以秒为单位）</td>
+<td>30</td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-connect-timeout-seconds</td>
+<td>指示在连接到eureka服务器需要超时之前等待（以秒为单位）的时间</td>
+<td>5</td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-d-n-s-name</td>
+<td>获取要查询的DNS名称以获取eureka服务器的列表</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-port</td>
+<td>获取用于构建服务url的端口</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-read-timeout-seconds</td>
+<td>指示从eureka服务器读取之前需要等待（秒）多久才能超时</td>
+<td>8</td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-total-connections</td>
+<td>获取从eureka客户端到所有eureka服务器允许的总连接数</td>
+<td>200</td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-total-connections-per-host</td>
+<td>获取从eureka客户端到eureka服务器主机允许的总连接数</td>
+<td>50</td>
+</tr>
+<tr>
+<td>eureka.client.eureka-server-u-r-l-context</td>
+<td>获取用于构建服务网址的URL上下文，以便在eureka服务器列表来自DNS时联系eureka服务器</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.eureka-service-url-poll-interval-seconds</td>
+<td>表示轮询对eureka服务器信息进行更改的频率（以秒为单位）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>eureka.client.fetch-registry</td>
+<td>指示该客户端是否应从eureka服务器获取eureka注册表信息</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.fetch-remote-regions-registry</td>
+<td>逗号分隔将获取eureka注册表信息的区域列表</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.filter-only-up-instances</td>
+<td>指示是否在仅具有InstanceStatus UP状态的实例的过滤应用程序之后获取应用程序</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.g-zip-content</td>
+<td>从服务器支持时，是否必须压缩从eureka服务器提取的内容</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.heartbeat-executor-exponential-back-off-bound</td>
+<td>心跳执行者指数回撤相关财产</td>
+<td>10</td>
+</tr>
+<tr>
+<td>eureka.client.heartbeat-executor-thread-pool-size</td>
+<td>heartbeat执行器初始化的线程池大小</td>
+<td>2</td>
+</tr>
+<tr>
+<td>eureka.client.initial-instance-info-replication-interval-seconds</td>
+<td>指示将实例信息复制到eureka服务器的开始时间（以秒为单位）</td>
+<td>40</td>
+</tr>
+<tr>
+<td>eureka.client.instance-info-replication-interval-seconds</td>
+<td>指示复制要复制到eureka服务器的实例更改的频率（以秒为单位）</td>
+<td>30</td>
+</tr>
+<tr>
+<td>eureka.client.log-delta-diff</td>
+<td>指示在注册表信息方面是否记录eureka服务器和eureka客户端之间的差异</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eureka.client.on-demand-update-status-change</td>
+<td>如果设置为true，则通过ApplicationInfoManager进行的本地状态更新将触发对远程eureka服务器的按需（但限速）注册/更新</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.prefer-same-zone-eureka</td>
+<td>指示此实例是否应尝试在同一区域中使用eureka服务器延迟和/或其他原因</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.proxy-host</td>
+<td>获取代理主机到eureka服务器（如果有的话）</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.proxy-password</td>
+<td>获取代理密码（如果有）</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.proxy-port</td>
+<td>获取代理端口到eureka服务器（如果有的话）</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.proxy-user-name</td>
+<td>获取代理用户名（如果有）</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.region us-east-1</td>
+<td>获取此实例所在的区域</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.register-with-eureka</td>
+<td>指示此实例是否应将其信息注册到eureka服务器以供其他人发现</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.client.registry-fetch-interval-seconds</td>
+<td>指示从eureka服务器获取注册表信息的频率（以秒为单位）</td>
+<td>30</td>
+</tr>
+<tr>
+<td>eureka.client.registry-refresh-single-vip-address</td>
+<td>指示客户端是否只对单个VIP的注册表信息感兴趣</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.service-url</td>
+<td>可用性区域映射到与eureka服务器通信的完全限定URL的列表。每个值可以是单个URL或逗号分隔的替代位置列表</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.use-dns-for-fetching-service-urls</td>
+<td>指示eureka客户端是否应该使用DNS机制来获取要与之通信的eureka服务器列表。</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eureka.dashboard.enabled</td>
+<td>标志以启用Eureka仪表板</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eureka.dashboard.path</td>
+<td>到Eureka仪表板（相对于servlet路径）的路径</td>
+<td>“/”</td>
+</tr>
+<tr>
+<td>eureka.instance.a-s-g-name</td>
+<td>获取与此实例关联的AWS自动缩放组名称。</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.app-group-name</td>
+<td>获取要在eureka中注册的应用程序组的名称</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.appname</td>
+<td>获取要在eureka注册的应用程序的名称</td>
+<td>unknown</td>
+</tr>
+<tr>
+<td>eureka.instance.data-center-info</td>
+<td>返回此实例部署的数据中心</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.health-check-url</td>
+<td>获取此实例的绝对运行状况检查页面URL</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="二、Feign"><a href="#二、Feign" class="headerlink" title="二、Feign"></a>二、Feign</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feign.compression.request.mime-types</td>
+<td>支持的MIME类型列表</td>
+<td>[text/xml, application/xml, application/json]</td>
+</tr>
+<tr>
+<td>feign.compression.request.min-request-size</td>
+<td>最小阈值内容大小</td>
+<td>2048</td>
+</tr>
+</tbody>
+</table>
+<h4 id="三、health"><a href="#三、health" class="headerlink" title="三、health"></a>三、health</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>health.config.enabled</td>
+<td>标记以指示应安装配置服务器运行状况指示器</td>
+<td>false</td>
+</tr>
+<tr>
+<td>health.config.time-to-live</td>
+<td>生成缓存结果的时间，以毫秒为单位</td>
+<td>300000（5分钟）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="四、hystrix"><a href="#四、hystrix" class="headerlink" title="四、hystrix"></a>四、hystrix</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hystrix.metrics.enabled</td>
+<td>启用Hystrix指标轮询</td>
+<td>true</td>
+</tr>
+<tr>
+<td>hystrix.metrics.polling-interval-ms</td>
+<td>后续轮询度量之间的间隔</td>
+<td>2000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="五、hystrix"><a href="#五、hystrix" class="headerlink" title="五、hystrix"></a>五、hystrix</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zuul.add-host-header</td>
+<td>标识以确定代理是否转发主机头</td>
+<td>false</td>
+</tr>
+<tr>
+<td>zuul.add-proxy-headers</td>
+<td>标识以确定代理是否添加X-Forwarded-* 标头</td>
+<td>true</td>
+</tr>
+<tr>
+<td>zuul.host.max-per-route-connections</td>
+<td>单个路由可以使用的最大连接数</td>
+<td>20</td>
+</tr>
+<tr>
+<td>zuul.host.max-total-connections</td>
+<td>代理可以容纳到后端的总连接数</td>
+<td>200</td>
+</tr>
+<tr>
+<td>zuul.ignore-security-headers</td>
+<td>如果spring security在类路径上，则将SECURITY_HEADERS添加到忽略的标头</td>
+<td>true</td>
+</tr>
+<tr>
+<td>zuul.ignored-headers</td>
+<td>HTTP标头的名称完全忽略</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.ignored-services</td>
+<td>一组服务名称不考虑代理自动。</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.prefix</td>
+<td>所有路由的公共前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.remove-semicolon-content</td>
+<td>标记说，可以删除超过第一个分号的路径元素</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.retryable</td>
+<td>默认情况下是否支持重试的标志</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.routes</td>
+<td>将路线名称映射到属性</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.securityheaders</td>
+<td>一般预期由Spring安全性添加的标头，因此如果代理和后端使用Spring保护，则通常会重复。默认情况下，如果存在Spring安全性，并且ignoreSecurityHeaders = true，它们将被添加到忽略的标头</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.semaphore.max-semaphores</td>
+<td>Hystrix的总信号量的最大数量</td>
+<td>100</td>
+</tr>
+<tr>
+<td>zuul.sensitive-headers</td>
+<td>不传递到下游请求的敏感标头列表</td>
+<td></td>
+</tr>
+<tr>
+<td>zuul.servlet-path</td>
+<td>安装Zuul作为servlet的路径</td>
+<td>/zull</td>
+</tr>
+<tr>
+<td>zuul.ssl-hostname-validation-enabled</td>
+<td>标记以说明是否应验证ssl连接的主机名</td>
+<td>true</td>
+</tr>
+<tr>
+<td>zuul.strip-prefix</td>
+<td>在转发之前标记是否从路径中删除前缀</td>
+<td>true</td>
+</tr>
+<tr>
+<td>zuul.trace-request-body</td>
+<td>标记说可以跟踪请求机构</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="六、spring-cloud-bus"><a href="#六、spring-cloud-bus" class="headerlink" title="六、spring.cloud.bus"></a>六、spring.cloud.bus</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring.cloud.bus.ack.destination-service</td>
+<td>想要听ack的服务</td>
+<td>null（表示所有服务）</td>
+</tr>
+<tr>
+<td>spring.cloud.bus.ack.enabled</td>
+<td>标志关闭acks</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.bus.destination</td>
+<td>名称Spring Cloud消息的流目的地</td>
+<td>springCloudBus</td>
+</tr>
+<tr>
+<td>spring.cloud.bus.enabled</td>
+<td>标志表示总线已启用</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.bus.env.enabled</td>
+<td>标志关闭环境变化事件</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.bus.refresh.enabled</td>
+<td>关闭刷新事件的标志</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.bus.trace.enabled</td>
+<td>打开acks跟踪的标志</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4 id="七、spring-cloud-config"><a href="#七、spring-cloud-config" class="headerlink" title="七、spring.cloud.config"></a>七、spring.cloud.config</h4><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring.cloud.config.allow-override</td>
+<td>标记以指示可以使用{@link #isSystemPropertiesOverride（）systemPropertiesOverride}。设置为false以防止用户意外更改默认值</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.config.authorization</td>
+<td>客户端使用的授权令牌连接到服务器</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.discovery.enabled</td>
+<td>标记以指示启用配置服务器发现</td>
+<td>false</td>
+</tr>
+<tr>
+<td>spring.cloud.config.discovery.service-id</td>
+<td>服务ID来定位配置服务器</td>
+<td>configserver</td>
+</tr>
+<tr>
+<td>spring.cloud.config.enabled</td>
+<td>标记说远程配置启用</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.config.fail-fast</td>
+<td>标记表示无法连接到服务器是致命的</td>
+<td>false</td>
+</tr>
+<tr>
+<td>spring.cloud.config.label</td>
+<td>用于拉取远程配置属性的标签名称</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.name</td>
+<td>用于获取远程属性的应用程序名称</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.override-none</td>
+<td>标志表示当{@link #setAllowOverride（boolean）allowOverride}为true时，外部属性应该采用最低优先级，并且不覆盖任何现有的属性源（包括本地配置文件）</td>
+<td>false</td>
+</tr>
+<tr>
+<td>spring.cloud.config.override-system-properties</td>
+<td>标记以指示外部属性应覆盖系统属性</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.config.password</td>
+<td>联系远程服务器时使用的密码</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.profile</td>
+<td>获取远程配置时使用的默认配置文件（逗号分隔）</td>
+<td>default</td>
+</tr>
+<tr>
+<td>spring.cloud.config.retry.initial-interval</td>
+<td>初始重试间隔（以毫秒为单位）</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>spring.cloud.config.retry.max-attempts</td>
+<td>最大尝试次数</td>
+<td>6</td>
+</tr>
+<tr>
+<td>spring.cloud.config.retry.max-interval</td>
+<td>退避的最大间隔</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>spring.cloud.config.retry.multiplier</td>
+<td>下一个间隔的乘数</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.bootstrap</td>
+<td>表示配置服务器应使用远程存储库中的属性初始化其自己的环境</td>
+<td>false</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.default-application-name</td>
+<td>application 传入请求没有特定的默认应用程序名称</td>
+<td>application</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.default-label</td>
+<td>传入请求没有特定标签时的默认存储库标签</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.default-profile</td>
+<td>传入请求没有特定的默认应用程序配置文件时</td>
+<td>default</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.encrypt.enabled</td>
+<td>在发送给客户端之前启用对环境属性的解密</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.force-pull</td>
+<td>标记表示存储库应该强制拉。如果真的丢弃任何本地更改并从远程存储库获取</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.password</td>
+<td>使用远程存储库验证密码</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.repos</td>
+<td>存储库标识符映射到位置和其他属性</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.search-paths</td>
+<td>在本地工作副本中使用的搜索路径</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.timeout</td>
+<td>用于获取HTTP或SSH连接的超时（以秒为单位）</td>
+<td>5</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.uri</td>
+<td>远程存储库的URI</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.git.username</td>
+<td>用于远程存储库的身份验证用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.native.fail-on-error</td>
+<td>标识以确定在解密期间如何处理异常</td>
+<td>false</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.native.search-locations</td>
+<td>搜索配置文件的位置</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.native.version</td>
+<td>为本地存储库报告的版本字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.overrides</td>
+<td>无条件发送给所有客户的资源的额外地图</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.prefix</td>
+<td>配置资源路径的前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>spring.cloud.config.server.strip-document-from-yaml</td>
+<td>标记为指示作为文本或集合（而不是映射）的YAML文档应以“本机”形式返回</td>
+<td>true</td>
+</tr>
+<tr>
+<td>spring.cloud.config.uri</td>
+<td>远程服务器的URI</td>
+<td>http：// localhost：8888</td>
+</tr>
+<tr>
+<td>spring.cloud.config.username</td>
+<td>联系远程服务器时使用的用户名</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '40998231261191d643b7',
+        clientSecret: 'dcb34d28beb68fb1c34dd4dd9844a8da28256698',
+        repo: 'blog-comments',
+        owner: 'jiubanmoli',
+        admin: "jiubanmoli",
+        id: '2019-12-16T20-17-04',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/12/17/git-one/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Git常用命令总结">
+                        
+                        <span class="card-title">Git常用命令总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、新建代码库1.新建一个项目，并初始化
+$ git init [project-name]
+2.下载项目
+$ git clone [url]
+二、配置1.显示当前的Git配置
+$ git config --list
+2.编辑Git配置文件
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/12/16/springcloud-four/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="认识SpringCloud(四)—服务治理机制">
+                        
+                        <span class="card-title">认识SpringCloud(四)—服务治理机制</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、了解服务治理机制在上一节搭建SpringCloud中，我们知道了整个 Eureka 服务治理基础架构的三个核心要素。下面我们进一步了解下SpringCloud的服务治理机制
+我们看可以先看下图：
+
+根据上面的结构， 下面我们来详细了解一
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SpringCloud/" class="post-category" target="_blank">
+                                    SpringCloud
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SpringCloud/" target="_blank">
+                        <span class="chip bg-color">SpringCloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 清风逐月夜半时<br />'
+            + '作者: 久伴沫离<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">45.1k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+            ICP证：<a href="http://beian.miit.gov.cn" target="_blank" class="link-color">浙ICP备18006162号-1</a>
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="13795376530@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 623090787" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script async src="//code.tidio.co/nfshanqdkgj092bpdbwjxtfhhopilxb7.js"></script> 
+<!-- <script>
+(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+daovoice('init', {
+    app_id: "a06ffe26"
+    });
+daovoice('update');
+</script> -->
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

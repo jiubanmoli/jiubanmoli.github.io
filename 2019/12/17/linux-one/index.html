@@ -1,0 +1,1461 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux常用命令总结, 清风逐月夜半时">
+    <meta name="description" content="一、系统信息1.显示机器的处理器架构(1)
+arch  
+2.显示机器的处理器架构(2) 
+uname -m 
+3.显示正在使用的内核版本 
+uname -r 
+4.显示硬件系统部件 - (SMBIOS / DMI) 
+dmidecode ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Linux常用命令总结 | 清风逐月夜半时</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">清风逐月夜半时</span>
+                </a>
+            </div>
+            
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+              <a href="" class="waves-effect waves-light">
+                
+                  <i class="fa fa fa-book"></i>
+                
+                <span>媒体</span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </a>
+
+            <ul class="sub-nav menus_item_child ">
+              
+                <li> 
+                  <a href="/books" >
+                    
+                      <i class="fa fa fa-book" style="margin-top: -20px;"></i>
+                    
+                    <span>书单</span>
+                  </a>
+                </li>
+              
+                <li> 
+                  <a href="/movies" >
+                    
+                      <i class="fa fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>电影</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">清风逐月夜半时</div>
+        <div class="logo-desc">
+            
+            把努力当成一种习惯
+            
+        </div>
+    </div>
+
+    
+
+    <!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+        
+            <li class="m-nav-item">
+                    
+                        <a href="/" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-home"></i>
+                            
+                            首页
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/tags" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-tags"></i>
+                            
+                            标签
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/categories" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-bookmark"></i>
+                            
+                            分类
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/archives" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-archive"></i>
+                            
+                            归档
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/about" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-user-circle-o"></i>
+                            
+                            关于我
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/friends" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-address-book"></i>
+                            
+                            友情链接
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="javascript:;">
+                                
+                                <i class="fa fa-fw fa fa-book"></i>
+                                
+                                媒体
+                                <span class="m-icon"><i class="fa fa-chevron-right"></i></span>
+                        </a>
+                    <ul>
+                      
+                        <li> 
+                          <a href="/books" >
+                               
+                                <i class="fa fa fa-book" style="left: 25px; position: absolute;"></i>
+                           
+                           <span>书单</span>
+                          </a>
+                        </li>
+                      
+                        <li> 
+                          <a href="/movies" >
+                               
+                                <i class="fa fa fa-film" style="left: 25px; position: absolute;"></i>
+                           
+                           <span>电影</span>
+                          </a>
+                        </li>
+                       
+                    </ul>
+                  
+                </li>
+            
+    
+            
+            <li><div class="divider"></div></li>
+            <li>
+                <a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="waves-effect waves-light" target="_blank">
+                    <i class="fa fa-github-square fa-fw"></i>Fork Me
+                </a>
+            </li>
+          
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Linux常用命令总结
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/" target="_blank">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-12-17
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2,973
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        13 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="一、系统信息"><a href="#一、系统信息" class="headerlink" title="一、系统信息"></a>一、系统信息</h4><p>1.显示机器的处理器架构(1)</p>
+<pre><code>arch  
+</code></pre><p>2.显示机器的处理器架构(2) </p>
+<pre><code>uname -m 
+</code></pre><p>3.显示正在使用的内核版本 </p>
+<pre><code>uname -r 
+</code></pre><p>4.显示硬件系统部件 - (SMBIOS / DMI) </p>
+<pre><code>dmidecode -q 
+</code></pre><p>5.罗列一个磁盘的架构特性 </p>
+<pre><code>hdparm -i /dev/hda 
+</code></pre><p>6.在磁盘上执行测试性读取操作 </p>
+<pre><code>hdparm -tT /dev/sda 
+</code></pre><p>7.显示CPU info的信息</p>
+<pre><code>cat /proc/cpuinfo 
+</code></pre><p>8.显示中断 </p>
+<pre><code>cat /proc/interrupts 
+</code></pre><p>9.校验内存使用</p>
+<pre><code>cat /proc/meminfo 
+</code></pre><p>10.显示哪些swap被使用</p>
+<pre><code>cat /proc/swaps 
+</code></pre><p>11.显示内核的版本</p>
+<pre><code>cat /proc/version  
+</code></pre><p>12.显示网络适配器及统计</p>
+<pre><code>cat /proc/net/dev 
+</code></pre><p>13.显示已加载的文件系统</p>
+<pre><code>cat /proc/mounts 
+</code></pre><p>14.罗列 PCI 设备</p>
+<pre><code>lspci -tv  
+</code></pre><p>15.显示 USB 设备</p>
+<pre><code>lsusb -tv
+</code></pre><p>16.显示系统日期</p>
+<pre><code>date  
+</code></pre><p>17.显示2007年的日历表 </p>
+<pre><code>cal 2007
+</code></pre><p>18.设置日期和时间 - 月日时分年.秒 </p>
+<pre><code>date 041217002007.00
+</code></pre><p>19.将时间修改保存到 BIOS </p>
+<pre><code>clock -w
+</code></pre><h4 id="二、关机-系统的关机、重启以及登出"><a href="#二、关机-系统的关机、重启以及登出" class="headerlink" title="二、关机 (系统的关机、重启以及登出 )"></a>二、关机 (系统的关机、重启以及登出 )</h4><p>1.关闭系统(1) </p>
+<pre><code>shutdown -h now 
+</code></pre><p>2.关闭系统(2) </p>
+<pre><code>init 0 
+</code></pre><p>3.关闭系统(3)</p>
+<pre><code>telinit 0 
+</code></pre><p>4.按预定时间关闭系统 </p>
+<pre><code>shutdown -h hours:minutes &amp; 
+</code></pre><p>5.取消按预定时间关闭系统</p>
+<pre><code>shutdown -c  
+</code></pre><p>6.重启(1) </p>
+<pre><code>shutdown -r now 
+</code></pre><p>7.重启(2) </p>
+<pre><code>reboot 
+</code></pre><p>8.注销</p>
+<pre><code>logout  
+</code></pre><h4 id="三、文件和目录"><a href="#三、文件和目录" class="headerlink" title="三、文件和目录"></a>三、文件和目录</h4><p>1.进入 ‘/ home’ 目录’ </p>
+<pre><code>cd /home
+</code></pre><p>2.返回上一级目录</p>
+<pre><code>cd ..
+</code></pre><p>3.返回上两级目录 </p>
+<pre><code>cd ../..
+</code></pre><p>4.进入个人的主目录 </p>
+<pre><code>cd ~user1
+</code></pre><p>5.返回上次所在的目录</p>
+<pre><code>cd -
+</code></pre><p>6.显示工作路径</p>
+<pre><code>pwd
+</code></pre><p>7.查看目录中的文件</p>
+<pre><code>ls
+</code></pre><p>8.查看目录中的文件 </p>
+<pre><code>ls -F
+</code></pre><p>9.显示文件和目录的详细资料 </p>
+<pre><code>ls -l
+</code></pre><p>10.显示隐藏文件</p>
+<pre><code>ls -a
+</code></pre><p>11.显示包含数字的文件名和目录名 </p>
+<pre><code>ls *[0-9]*
+</code></pre><p>12.显示文件和目录由根目录开始的树形结构(1) </p>
+<pre><code>tree
+</code></pre><p>13.显示文件和目录由根目录开始的树形结构(2) </p>
+<pre><code>lstree
+</code></pre><p>14.创建一个叫做 ‘dir1’ 的目录’ </p>
+<pre><code>mkdir dir1
+</code></pre><p>15.同时创建两个目录 </p>
+<pre><code>mkdir dir1 dir2
+</code></pre><p>16.创建一个目录树 </p>
+<pre><code>mkdir -p /tmp/dir1/dir2
+</code></pre><p>17.删除一个叫做 ‘file1’ 的文件’ </p>
+<pre><code>rm -f file1
+</code></pre><p>18.删除一个叫做 ‘dir1’ 的目录’ </p>
+<pre><code>rmdir dir1
+</code></pre><p>19.删除一个叫做 ‘dir1’ 的目录并同时删除其内容 </p>
+<pre><code>rm -rf dir1
+</code></pre><p>20.同时删除两个目录及它们的内容</p>
+<pre><code>rm -rf dir1 dir2
+</code></pre><p>21.重命名/移动 一个目录</p>
+<pre><code>mv dir1  new_dir
+</code></pre><p>22.复制一个文件 </p>
+<pre><code>cp file1 file2
+</code></pre><p>23.复制一个目录下的所有文件到当前工作目录 </p>
+<pre><code>cp dir/*.
+</code></pre><p>24.复制一个目录到当前工作目录</p>
+<pre><code>cp -a /tmp/dir1 .
+</code></pre><p>25.复制一个目录</p>
+<pre><code>cp -a dir1 dir2
+</code></pre><p>26.创建一个指向文件或目录的软链接 </p>
+<pre><code>ln -s file1 lnk1
+</code></pre><p>27.创建一个指向文件或目录的物理链接 </p>
+<pre><code>ln file1 lnk1
+</code></pre><ol start="28">
+<li>修改一个文件或目录的时间戳 - (YYMMDDhhmm) </li>
+</ol>
+<pre><code>touch -t 0712250000 file1
+</code></pre><p>29.列出已知的编码 </p>
+<pre><code>iconv -l
+</code></pre><h4 id="四、文件搜索"><a href="#四、文件搜索" class="headerlink" title="四、文件搜索"></a>四、文件搜索</h4><p>1.从 ‘/‘ 开始进入根文件系统搜索文件和目录 </p>
+<pre><code>find / -name file1
+</code></pre><p>2.搜索属于用户 ‘user1’ 的文件和目录 </p>
+<pre><code>find / -user user1
+</code></pre><p>3.在目录 ‘/ home/user1’ 中搜索带有’.bin’ 结尾的文件 </p>
+<pre><code>find /home/user1 -name \*.bin
+</code></pre><p>4.搜索在过去100天内未被使用过的执行文件</p>
+<pre><code>find /usr/bin -type f -atime +100
+</code></pre><p>5.搜索在10天内被创建或者修改过的文件</p>
+<pre><code>find /usr/bin -type f -mtime -10
+</code></pre><p>6.搜索以 ‘.rpm’ 结尾的文件并定义其权限</p>
+<pre><code>find / -name \*.rpm -exec chmod 755 '{}' \
+</code></pre><p>7.搜索以 ‘.rpm’ 结尾的文件，忽略光驱、捷盘等可移动设备 </p>
+<pre><code>find / -xdev -name \*.rpm
+</code></pre><p>8.寻找以 ‘.ps’ 结尾的文件 - 先运行 ‘updatedb’ 命令 </p>
+<pre><code>locate \*.ps
+</code></pre><p>9.显示一个二进制文件、源码或man的位置</p>
+<pre><code>whereis halt
+</code></pre><ol start="10">
+<li>显示一个二进制文件或可执行文件的完整路径 </li>
+</ol>
+<pre><code>which halt
+</code></pre><h4 id="五、挂载一个文件系统"><a href="#五、挂载一个文件系统" class="headerlink" title="五、挂载一个文件系统"></a>五、挂载一个文件系统</h4><p>1.挂载一个叫做hda2的盘 - 确定目录 ‘/ mnt/hda2’ 已经存在 </p>
+<pre><code>mount /dev/hda2 /mnt/hda2 
+</code></pre><p>2.卸载一个叫做hda2的盘 - 先从挂载点 ‘/ mnt/hda2’ 退出</p>
+<pre><code>umount /dev/hda2  
+</code></pre><p>3.当设备繁忙时强制卸载 </p>
+<pre><code>fuser -km /mnt/hda2 
+</code></pre><p>4.运行卸载操作而不写入 /etc/mtab 文件- 当文件为只读或当磁盘写满时非常有用 </p>
+<pre><code>umount -n /mnt/hda2 
+</code></pre><p>5.挂载一个软盘 </p>
+<pre><code>mount /dev/fd0 /mnt/floppy 
+</code></pre><p>6.挂载一个cdrom或dvdrom </p>
+<pre><code>mount /dev/cdrom /mnt/cdrom 
+</code></pre><p>7.挂载一个cdrw或dvdrom </p>
+<pre><code>mount /dev/hdc /mnt/cdrecorder 
+</code></pre><p>8.挂载一个cdrw或dvdrom </p>
+<pre><code>mount /dev/hdb /mnt/cdrecorder 
+</code></pre><p>9.挂载一个文件或ISO镜像文件 </p>
+<pre><code>mount -o loop file.iso /mnt/cdrom 
+</code></pre><p>10.挂载一个Windows FAT32文件系统 </p>
+<pre><code>mount -t vfat /dev/hda5 /mnt/hda5 
+</code></pre><p>11.挂载一个usb 捷盘或闪存设备 </p>
+<pre><code>mount /dev/sda1 /mnt/usbdisk 
+</code></pre><p>12.挂载一个windows网络共享 </p>
+<pre><code>mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 
+</code></pre><h4 id="六、磁盘空间"><a href="#六、磁盘空间" class="headerlink" title="六、磁盘空间"></a>六、磁盘空间</h4><p>1.显示已经挂载的分区列表 </p>
+<pre><code>df -h
+</code></pre><p>2.以尺寸大小排列文件和目录 </p>
+<pre><code>ls -lSr |more 
+</code></pre><p>3.估算目录 ‘dir1’ 已经使用的磁盘空间’ </p>
+<pre><code>du -sh dir1 
+</code></pre><p>4.以容量大小为依据依次显示文件和目录的大小 </p>
+<pre><code>du -sk * | sort -rn 
+</code></pre><p>5.1n以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) </p>
+<pre><code>rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1
+</code></pre><p>6.1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统)</p>
+<pre><code>dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1
+</code></pre><h4 id="七、用户和群组"><a href="#七、用户和群组" class="headerlink" title="七、用户和群组"></a>七、用户和群组</h4><p>1.创建一个新用户组 </p>
+<pre><code>groupadd group_name 
+</code></pre><p>2.删除一个用户组</p>
+<pre><code>groupdel group_name  
+</code></pre><p>3.重命名一个用户组 </p>
+<pre><code>groupmod -n new_group_name old_group_name 
+</code></pre><p>4.创建一个属于 “admin” 用户组的用户 </p>
+<pre><code>useradd -c "Name Surname " -g admin -d /home/user1 -s /bin/bash user1 
+</code></pre><p>5.创建一个新用户</p>
+<pre><code>useradd user1  
+</code></pre><p>5.删除一个用户 ( ‘-r’ 排除主目录) </p>
+<pre><code>userdel -r user1 
+</code></pre><p>6.修改用户属性</p>
+<pre><code>usermod -c "User FTP" -g system -d /ftp/user1 -s /bin/nologin user1 
+</code></pre><p>7.修改口令 </p>
+<pre><code>passwd 
+</code></pre><p>8.修改一个用户的口令 (只允许root执行) </p>
+<pre><code>passwd user1 
+</code></pre><p>9.设置用户口令的失效期限 </p>
+<pre><code>chage -E 2005-12-31 user1 
+</code></pre><p>10.检查 ‘/etc/passwd’ 的文件格式和语法修正以及存在的用户 </p>
+<pre><code>pwck 
+</code></pre><p>11.检查 ‘/etc/passwd’ 的文件格式和语法修正以及存在的群组 </p>
+<pre><code>grpck 
+</code></pre><p>12.登陆进一个新的群组以改变新创建文件的预设群组 </p>
+<pre><code>newgrp group_name 
+</code></pre><h4 id="八、文件的权限-“-”-设置权限，”-“-用于取消"><a href="#八、文件的权限-“-”-设置权限，”-“-用于取消" class="headerlink" title="八、文件的权限 - “+” 设置权限，”-“ 用于取消"></a>八、文件的权限 - “+” 设置权限，”-“ 用于取消</h4><p>1.将终端划分成5栏显示</p>
+<pre><code>ls /tmp | pr -T5 -W$COLUMNS 
+</code></pre><p>2.设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限 </p>
+<pre><code>chmod ugo+rwx directory1 
+</code></pre><p>3.删除群组(g)与其他人(o)对目录的读写执行权限 </p>
+<pre><code>chmod go-rwx directory1 
+</code></pre><p>4.改变一个文件的所有人属性 </p>
+<pre><code>chown user1 file1 
+</code></pre><p>5.改变一个目录的所有人属性并同时改变改目录下所有文件的属性 </p>
+<pre><code>chown -R user1 directory1 
+</code></pre><p>6.改变文件的群组 </p>
+<pre><code>chgrp group1 file1 
+</code></pre><p>7.改变一个文件的所有人和群组属性</p>
+<pre><code>chown user1:group1 file1  
+</code></pre><p>8.罗列一个系统中所有使用了SUID控制的文件 </p>
+<pre><code>find / -perm -u+s 
+</code></pre><p>9.设置一个二进制文件的 SUID 位 - 运行该文件的用户也被赋予和所有者同样的权限 </p>
+<pre><code>chmod u+s /bin/file1 
+</code></pre><p>10.禁用一个二进制文件的 SUID位 </p>
+<pre><code>chmod u-s /bin/file1 
+</code></pre><p>11.设置一个目录的SGID 位 - 类似SUID ，不过这是针对目录的 </p>
+<pre><code>chmod g+s /home/public 
+</code></pre><p>12.禁用一个目录的 SGID 位 </p>
+<pre><code>chmod g-s /home/public 
+</code></pre><p>13.设置一个文件的 STIKY 位 - 只允许合法所有人删除文件 </p>
+<pre><code>chmod o+t /home/public 
+</code></pre><p>13.禁用一个目录的 STIKY 位 </p>
+<pre><code>chmod o-t /home/public 
+</code></pre><h4 id="九、文件的特殊属性-“-”-设置权限，”-“-用于取消"><a href="#九、文件的特殊属性-“-”-设置权限，”-“-用于取消" class="headerlink" title="九、文件的特殊属性 - “+” 设置权限，”-“ 用于取消"></a>九、文件的特殊属性 - “+” 设置权限，”-“ 用于取消</h4><p>1.只允许以追加方式读写文件</p>
+<pre><code>chattr +a file1  
+</code></pre><p>2.允许这个文件能被内核自动压缩/解压 </p>
+<pre><code>chattr +c file1 
+</code></pre><p>3.在进行文件系统备份时，dump程序将忽略这个文件</p>
+<pre><code>chattr +d file1  
+</code></pre><p>4.设置成不可变的文件，不能被删除、修改、重命名或者链接 </p>
+<pre><code>chattr +i file1 
+</code></pre><p>5.允许一个文件被安全地删除 </p>
+<pre><code>chattr +s file1 
+</code></pre><p>6.一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘 </p>
+<pre><code>chattr +S file1 
+</code></pre><p>7.若文件被删除，系统会允许你在以后恢复这个被删除的文件 </p>
+<pre><code>chattr +u file1 
+</code></pre><p>8.显示特殊的属性 </p>
+<pre><code>lsattr 
+</code></pre><h4 id="十、打包和压缩文件"><a href="#十、打包和压缩文件" class="headerlink" title="十、打包和压缩文件"></a>十、打包和压缩文件</h4><p>1.解压一个叫做 ‘file1.bz2’的文件 </p>
+<pre><code>bunzip2 file1.bz2 
+</code></pre><p>2.压缩一个叫做 ‘file1’ 的文件</p>
+<pre><code>bzip2 file1  
+</code></pre><p>3.解压一个叫做 ‘file1.gz’的文件 </p>
+<pre><code>gunzip file1.gz 
+</code></pre><p>4.压缩一个叫做 ‘file1’的文件 </p>
+<pre><code>gzip file1
+</code></pre><p>5.最大程度压缩</p>
+<pre><code>gzip -9 file1  
+</code></pre><p>6.创建一个叫做 ‘file1.rar’ 的包 </p>
+<pre><code>rar a file1.rar test_file 
+</code></pre><p>7.同时压缩 ‘file1’, ‘file2’ 以及目录 ‘dir1’ </p>
+<pre><code>rar a file1.rar file1 file2 dir1 
+</code></pre><p>8.打包rar包 </p>
+<pre><code>rar x file1.rar 
+</code></pre><p>9.解压rar包</p>
+<pre><code>unrar x file1.rar 
+</code></pre><p>10.创建一个非压缩的 tarball </p>
+<pre><code>tar -cvf archive.tar file1 
+</code></pre><p>11.创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件 </p>
+<pre><code>tar -cvf archive.tar file1 file2 dir1 
+</code></pre><p>12.显示一个包中的内容</p>
+<pre><code>tar -tf archive.tar  
+</code></pre><p>13.释放一个包 </p>
+<pre><code>tar -xvf archive.tar 
+</code></pre><p>14.将压缩包释放到 /tmp目录下 </p>
+<pre><code>tar -xvf archive.tar -C /tmp 
+</code></pre><p>15.创建一个bzip2格式的压缩包 </p>
+<pre><code>tar -cvfj archive.tar.bz2 dir1 
+</code></pre><p>16.解压一个bzip2格式的压缩包 </p>
+<pre><code>tar -xvfj archive.tar.bz2 
+</code></pre><p>17.创建一个gzip格式的压缩包 </p>
+<pre><code>tar -cvfz archive.tar.gz dir1 
+</code></pre><p>18.解压一个gzip格式的压缩包 </p>
+<pre><code>tar -xvfz archive.tar.gz 
+</code></pre><p>19.创建一个zip格式的压缩包 </p>
+<pre><code>zip file1.zip file1 
+</code></pre><p>20.将几个文件和目录同时压缩成一个zip格式的压缩包 </p>
+<pre><code>zip -r file1.zip file1 file2 dir1 
+</code></pre><p>21.解压一个zip格式压缩包 </p>
+<pre><code>unzip file1.zip 
+</code></pre><h4 id="十一、DEB-包-Debian-Ubuntu-类似系统"><a href="#十一、DEB-包-Debian-Ubuntu-类似系统" class="headerlink" title="十一、DEB 包 (Debian, Ubuntu 类似系统)"></a>十一、DEB 包 (Debian, Ubuntu 类似系统)</h4><p>1.安装/更新一个 deb 包 </p>
+<pre><code>dpkg -i package.deb 
+</code></pre><p>2.从系统删除一个 deb 包 </p>
+<pre><code>dpkg -r package_name 
+</code></pre><p>3.显示系统中所有已经安装的 deb 包 </p>
+<pre><code>dpkg -l 
+</code></pre><p>4.显示所有名称中包含 “httpd” 字样的deb包 </p>
+<pre><code>dpkg -l | grep httpd 
+</code></pre><p>5.获得已经安装在系统中一个特殊包的信息</p>
+<pre><code>dpkg -s package_name  
+</code></pre><p>6.显示系统中已经安装的一个deb包所提供的文件列表 </p>
+<pre><code>dpkg -L package_name 
+</code></pre><p>7.显示尚未安装的一个包所提供的文件列表</p>
+<pre><code>dpkg --contents package.deb  
+</code></pre><p>8.确认所给的文件由哪个deb包提供 </p>
+<pre><code>dpkg -S /bin/ping 
+</code></pre><h4 id="十二、APT-软件工具-Debian-Ubuntu-类似系统"><a href="#十二、APT-软件工具-Debian-Ubuntu-类似系统" class="headerlink" title="十二、APT 软件工具 (Debian, Ubuntu 类似系统)"></a>十二、APT 软件工具 (Debian, Ubuntu 类似系统)</h4><p>1.安装/更新一个 deb 包 </p>
+<pre><code>apt-get install package_name 
+</code></pre><p>2.从光盘安装/更新一个 deb 包 </p>
+<pre><code>apt-cdrom install package_name 
+</code></pre><p>3.升级列表中的软件包</p>
+<pre><code>apt-get update  
+</code></pre><p>4.升级所有已安装的软件</p>
+<pre><code>apt-get upgrade  
+</code></pre><p>5.从系统删除一个deb包 </p>
+<pre><code>apt-get remove package_name 
+</code></pre><p>6.确认依赖的软件仓库正确</p>
+<pre><code>apt-get check  
+</code></pre><p>7.从下载的软件包中清理缓存 </p>
+<pre><code>apt-get clean 
+</code></pre><p>8.返回包含所要搜索字符串的软件包名称 </p>
+<pre><code>apt-cache search searched-package 
+</code></pre><h4 id="十三、查看文件内容"><a href="#十三、查看文件内容" class="headerlink" title="十三、查看文件内容"></a>十三、查看文件内容</h4><p>1.从第一个字节开始正向查看文件的内容 </p>
+<pre><code>cat file1 
+</code></pre><p>2.从最后一行开始反向查看一个文件的内容 </p>
+<pre><code>tac file1 
+</code></pre><p>3.查看一个长文件的内容</p>
+<pre><code>more file1  
+</code></pre><p>4.类似于 ‘more’ 命令，但是它允许在文件中和正向操作一样的反向操作 </p>
+<pre><code>less file1 
+</code></pre><p>5.查看一个文件的前两行</p>
+<pre><code>head -2 file1  
+</code></pre><p>6.查看一个文件的最后两行 </p>
+<pre><code>tail -2 file1 
+</code></pre><p>7.实时查看被添加到一个文件中的内容</p>
+<pre><code>tail -f /var/log/messages  
+</code></pre><h4 id="十四、文本处理"><a href="#十四、文本处理" class="headerlink" title="十四、文本处理"></a>十四、文本处理</h4><h4 id="十五、字符设置和文件格式转换"><a href="#十五、字符设置和文件格式转换" class="headerlink" title="十五、字符设置和文件格式转换"></a>十五、字符设置和文件格式转换</h4><h4 id="十六、文件系统分析"><a href="#十六、文件系统分析" class="headerlink" title="十六、文件系统分析"></a>十六、文件系统分析</h4><h4 id="十七、初始化一个文件系统"><a href="#十七、初始化一个文件系统" class="headerlink" title="十七、初始化一个文件系统"></a>十七、初始化一个文件系统</h4><h4 id="十八、SWAP文件系统"><a href="#十八、SWAP文件系统" class="headerlink" title="十八、SWAP文件系统"></a>十八、SWAP文件系统</h4><h4 id="十九、备份"><a href="#十九、备份" class="headerlink" title="十九、备份"></a>十九、备份</h4><h4 id="二十、光盘"><a href="#二十、光盘" class="headerlink" title="二十、光盘"></a>二十、光盘</h4><h4 id="二十一、网络-（以太网和WIFI无线）"><a href="#二十一、网络-（以太网和WIFI无线）" class="headerlink" title="二十一、网络 - （以太网和WIFI无线）"></a>二十一、网络 - （以太网和WIFI无线）</h4><h4 id="二十二、JPS工具"><a href="#二十二、JPS工具" class="headerlink" title="二十二、JPS工具"></a>二十二、JPS工具</h4><p>作者：DreamWeaver_Zhou</p>
+<p>链接：<a href="https://blog.csdn.net/DreamWeaver_zhou/article/details/80922852" target="_blank" rel="noopener">https://blog.csdn.net/DreamWeaver_zhou/article/details/80922852</a></p>
+<p>來源：CSDN</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '40998231261191d643b7',
+        clientSecret: 'dcb34d28beb68fb1c34dd4dd9844a8da28256698',
+        repo: 'blog-comments',
+        owner: 'jiubanmoli',
+        admin: "jiubanmoli",
+        id: '2019-12-17T19-51-31',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/12/17/springcloud-six/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="SpringBoot与SpringCloud的版本对应详细版">
+                        
+                        <span class="card-title">SpringBoot与SpringCloud的版本对应详细版</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            大版本对应：
+
+
+SpringBoot
+SpringCloud
+
+
+
+
+1.2.x
+Angel版本
+
+
+1.3.x
+Brixton版本
+
+
+1.4.x stripes
+Camden版本
+
+
+1.5.x
+Dalston版本、Edgware版本
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SpringCloud/" class="post-category" target="_blank">
+                                    SpringCloud
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SpringCloud/" target="_blank">
+                        <span class="chip bg-color">SpringCloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/12/17/git-one/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Git常用命令总结">
+                        
+                        <span class="card-title">Git常用命令总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、新建代码库1.新建一个项目，并初始化
+$ git init [project-name]
+2.下载项目
+$ git clone [url]
+二、配置1.显示当前的Git配置
+$ git config --list
+2.编辑Git配置文件
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category" target="_blank">
+                                    Git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 清风逐月夜半时<br />'
+            + '作者: 久伴沫离<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">45.1k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+            ICP证：<a href="http://beian.miit.gov.cn" target="_blank" class="link-color">浙ICP备18006162号-1</a>
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="13795376530@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 623090787" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script async src="//code.tidio.co/nfshanqdkgj092bpdbwjxtfhhopilxb7.js"></script> 
+<!-- <script>
+(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+daovoice('init', {
+    app_id: "a06ffe26"
+    });
+daovoice('update');
+</script> -->
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

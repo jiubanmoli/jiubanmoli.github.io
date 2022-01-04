@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>清风逐月夜半时</title>
+  
+  <subtitle>清风逐月夜半时</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://jiubanmoli.github.io/"/>
+  <updated>2022-01-04T13:58:00.068Z</updated>
+  <id>http://jiubanmoli.github.io/</id>
+  
+  <author>
+    <name>久伴沫离</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo集成Gittalk报Error not found</title>
+    <link href="http://jiubanmoli.github.io/2019/12/20/gittalk-one/"/>
+    <id>http://jiubanmoli.github.io/2019/12/20/gittalk-one/</id>
+    <published>2019-12-20T08:06:02.794Z</published>
+    <updated>2022-01-04T13:58:00.068Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近修改个人博客评论系统，集成Gittalk，但加载Gittalk插件之后出现Error not
+        
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://jiubanmoli.github.io/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://jiubanmoli.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot与SpringCloud的版本对应详细版</title>
+    <link href="http://jiubanmoli.github.io/2019/12/17/springcloud-six/"/>
+    <id>http://jiubanmoli.github.io/2019/12/17/springcloud-six/</id>
+    <published>2019-12-17T12:01:29.746Z</published>
+    <updated>2022-01-04T13:58:00.147Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;大版本对应：&quot;&gt;&lt;a href=&quot;#大版本对应：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux常用命令总结</title>
+    <link href="http://jiubanmoli.github.io/2019/12/17/linux-one/"/>
+    <id>http://jiubanmoli.github.io/2019/12/17/linux-one/</id>
+    <published>2019-12-17T11:51:31.013Z</published>
+    <updated>2022-01-04T13:58:00.085Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、系统信息&quot;&gt;&lt;a href=&quot;#一、系统信息&quot; class=&quot;headerlink&quot; title=&quot;一、系统信息&quot;&gt;&lt;/a&gt;一、系统信息&lt;/h4&gt;&lt;p&gt;1.显示机器的处理器架构(1)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;arch 
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://jiubanmoli.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://jiubanmoli.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git常用命令总结</title>
+    <link href="http://jiubanmoli.github.io/2019/12/17/git-one/"/>
+    <id>http://jiubanmoli.github.io/2019/12/17/git-one/</id>
+    <published>2019-12-17T10:42:45.282Z</published>
+    <updated>2022-01-04T13:58:00.070Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、新建代码库&quot;&gt;&lt;a href=&quot;#一、新建代码库&quot; class=&quot;headerlink&quot; title=&quot;一、新建代码库&quot;&gt;&lt;/a&gt;一、新建代码库&lt;/h4&gt;&lt;p&gt;1.新建一个项目，并初始化&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git init
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://jiubanmoli.github.io/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://jiubanmoli.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认识SpringCloud(五)—常用配置详解</title>
+    <link href="http://jiubanmoli.github.io/2019/12/16/springcloud-five/"/>
+    <id>http://jiubanmoli.github.io/2019/12/16/springcloud-five/</id>
+    <published>2019-12-16T12:17:04.656Z</published>
+    <updated>2022-01-04T13:58:00.134Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、Eureka&quot;&gt;&lt;a href=&quot;#一、Eureka&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认识SpringCloud(四)—服务治理机制</title>
+    <link href="http://jiubanmoli.github.io/2019/12/16/springcloud-four/"/>
+    <id>http://jiubanmoli.github.io/2019/12/16/springcloud-four/</id>
+    <published>2019-12-16T11:17:58.008Z</published>
+    <updated>2022-01-04T13:58:00.136Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、了解服务治理机制&quot;&gt;&lt;a href=&quot;#一、了解服务治理机制&quot; class=&quot;headerlink&quot; title=&quot;一、了解服务治理机制&quot;&gt;&lt;/a&gt;一、了解服务治理机制&lt;/h4&gt;&lt;p&gt;在上一节搭建SpringCloud中，我们知道了整个
+        
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认识SpringCloud(三)—服务注册中心SpringCloud Eureka</title>
+    <link href="http://jiubanmoli.github.io/2019/12/16/springcloud-three/"/>
+    <id>http://jiubanmoli.github.io/2019/12/16/springcloud-three/</id>
+    <published>2019-12-16T07:48:57.716Z</published>
+    <updated>2022-01-04T13:58:00.145Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、认识服务治理&quot;&gt;&lt;a href=&quot;#一、认识服务治理&quot; class=&quot;headerlink&quot; title=&quot;一、认识服务治理&quot;&gt;&lt;/a&gt;一、认识服务治理&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;服务治理：&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认识SpringCloud(二)</title>
+    <link href="http://jiubanmoli.github.io/2019/12/16/springcloud-two/"/>
+    <id>http://jiubanmoli.github.io/2019/12/16/springcloud-two/</id>
+    <published>2019-12-16T07:35:19.473Z</published>
+    <updated>2022-01-04T13:58:00.141Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、搭建SpringBoot项目&quot;&gt;&lt;a href=&quot;#一、搭建SpringBoot项目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认识SpringCloud(一)</title>
+    <link href="http://jiubanmoli.github.io/2019/12/16/springcloud-one/"/>
+    <id>http://jiubanmoli.github.io/2019/12/16/springcloud-one/</id>
+    <published>2019-12-16T06:25:23.271Z</published>
+    <updated>2022-01-04T13:58:00.138Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;一、什么是微服务架构&quot;&gt;&lt;a href=&quot;#一、什么是微服务架构&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://jiubanmoli.github.io/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring-boot-kafka启动报错,无法自动创建Topic</title>
+    <link href="http://jiubanmoli.github.io/2019/11/28/springboot-six/"/>
+    <id>http://jiubanmoli.github.io/2019/11/28/springboot-six/</id>
+    <published>2019-11-28T11:18:51.326Z</published>
+    <updated>2022-01-04T13:58:00.127Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;之前用SpringBoot集成Kafka的时候，后面运行就报一下错误：&lt;/p&gt;
+&lt;pre class=&quot; language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;Caused by&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/categories/SpringBoot/"/>
+    
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring boot项目打包成war并在tomcat上运行的步骤</title>
+    <link href="http://jiubanmoli.github.io/2019/11/25/springboot-five/"/>
+    <id>http://jiubanmoli.github.io/2019/11/25/springboot-five/</id>
+    <published>2019-11-25T14:17:44.114Z</published>
+    <updated>2022-01-04T13:58:00.124Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、修改打包形式&quot;&gt;&lt;a href=&quot;#一、修改打包形式&quot; class=&quot;headerlink&quot; title=&quot;一、修改打包形式&quot;&gt;&lt;/a&gt;一、修改打包形式&lt;/h2&gt;&lt;p&gt;在pom.xml里设置 &lt;/p&gt;
+&lt;pre class=&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/categories/SpringBoot/"/>
+    
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot yml文件自定义属性乱码</title>
+    <link href="http://jiubanmoli.github.io/2019/11/25/springboot-four/"/>
+    <id>http://jiubanmoli.github.io/2019/11/25/springboot-four/</id>
+    <published>2019-11-25T05:55:24.999Z</published>
+    <updated>2022-01-04T13:58:00.126Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在springboot的application.yml文件中有中文时，读取出来的是乱码，需要进行一下操作：&lt;/p&gt;
+&lt;p&gt;将idea的配置编码设置为UTF-8,步骤如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1.Files-&amp;gt;Editor-&amp;gt;File
+        
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/categories/SpringBoot/"/>
+    
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo打包报TypeError Cannot read property &#39;count&#39; of undefined</title>
+    <link href="http://jiubanmoli.github.io/2019/11/24/hexo-one/"/>
+    <id>http://jiubanmoli.github.io/2019/11/24/hexo-one/</id>
+    <published>2019-11-24T10:45:09.862Z</published>
+    <updated>2022-01-04T13:58:00.071Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;某一天，突然想将自己的博客文章发布打包项目时，报如下错误：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ hexo g
+INFO Start processing
+FATAL Something&#39;s wrong. Maybe you can find the solution
+        
+      
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://jiubanmoli.github.io/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://jiubanmoli.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot 2.0启动报No active profile set, falling back to default</title>
+    <link href="http://jiubanmoli.github.io/2019/11/24/springboot-three/"/>
+    <id>http://jiubanmoli.github.io/2019/11/24/springboot-three/</id>
+    <published>2019-11-24T07:03:02.978Z</published>
+    <updated>2022-01-04T13:58:00.132Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;创建一个SpringBoot项目之后，控制台打印如下：&lt;/p&gt;
+&lt;pre class=&quot; language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;  
+        
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/categories/SpringBoot/"/>
+    
+    
+      <category term="SpringBoot" scheme="http://jiubanmoli.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里云服务器无法访问配置的服务端口</title>
+    <link href="http://jiubanmoli.github.io/2019/11/16/systembuild-two/"/>
+    <id>http://jiubanmoli.github.io/2019/11/16/systembuild-two/</id>
+    <published>2019-11-16T07:02:18.058Z</published>
+    <updated>2022-01-04T13:58:00.152Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;原因分析：&quot;&gt;&lt;a href=&quot;#原因分析：&quot; class=&quot;headerlink&quot; title=&quot;原因分析：&quot;&gt;&lt;/a&gt;原因分析：&lt;/h4&gt;&lt;p&gt;阿里云为了安全考虑，需要设置安全规则，否则会导致无法访问到服务器的相关端口。&lt;/p&gt;
+&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="http://jiubanmoli.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="服务器环境搭建" scheme="http://jiubanmoli.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里云学生服务器的购买和配置方法</title>
+    <link href="http://jiubanmoli.github.io/2019/11/15/systembuild/"/>
+    <id>http://jiubanmoli.github.io/2019/11/15/systembuild/</id>
+    <published>2019-11-15T12:47:27.123Z</published>
+    <updated>2022-01-04T13:58:00.159Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、购买&quot;&gt;&lt;a href=&quot;#一、购买&quot; class=&quot;headerlink&quot; title=&quot;一、购买&quot;&gt;&lt;/a&gt;一、购买&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1.登录阿里云官网&lt;/strong&gt; &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="http://jiubanmoli.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="服务器环境搭建" scheme="http://jiubanmoli.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Connection is read-only. Queries leading to data modification are not allowed 的产生原因及解决方案</title>
+    <link href="http://jiubanmoli.github.io/2019/01/20/ssm-three/"/>
+    <id>http://jiubanmoli.github.io/2019/01/20/ssm-three/</id>
+    <published>2019-01-20T11:28:33.608Z</published>
+    <updated>2022-01-04T13:58:00.148Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;spring.xml:文件&lt;/p&gt;
+&lt;pre class=&quot; language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;      &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="SSM" scheme="http://jiubanmoli.github.io/categories/SSM/"/>
+    
+    
+      <category term="SSM" scheme="http://jiubanmoli.github.io/tags/SSM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于表单自动提交的问题及解决方式</title>
+    <link href="http://jiubanmoli.github.io/2019/01/20/form/"/>
+    <id>http://jiubanmoli.github.io/2019/01/20/form/</id>
+    <published>2019-01-20T11:24:18.114Z</published>
+    <updated>2022-01-04T13:58:00.063Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在js中，我们常常会用到表单提交，但小编今天遇到一个问题：在删除所有引用的js文件之后，页面还是刷新&lt;/p&gt;
+&lt;p&gt;最后发现问题如下：&lt;/p&gt;
+&lt;p&gt;在js中，使用表单提交，即使你不写$(“XXX”).submit()也会使得表单提交，那如何寻找这种问题解决方式呢？&lt;/p&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="HTML" scheme="http://jiubanmoli.github.io/categories/HTML/"/>
+    
+    
+      <category term="HTML" scheme="http://jiubanmoli.github.io/tags/HTML/"/>
+    
+      <category term="Jquery" scheme="http://jiubanmoli.github.io/tags/Jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Package should contain a content type part [M1.13]异常的解决方式</title>
+    <link href="http://jiubanmoli.github.io/2019/01/20/hssfwork/"/>
+    <id>http://jiubanmoli.github.io/2019/01/20/hssfwork/</id>
+    <published>2019-01-20T11:21:46.578Z</published>
+    <updated>2022-01-04T13:57:59.997Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;此异常的源代码如下：&lt;/p&gt;
+&lt;pre class=&quot; language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="Java Web" scheme="http://jiubanmoli.github.io/categories/Java-Web/"/>
+    
+    
+      <category term="Java Web" scheme="http://jiubanmoli.github.io/tags/Java-Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>form表单中关于ajaxForm与ajaxSubmit的两种提交方式的用法和区别</title>
+    <link href="http://jiubanmoli.github.io/2019/01/20/ajax-three/"/>
+    <id>http://jiubanmoli.github.io/2019/01/20/ajax-three/</id>
+    <published>2019-01-20T11:19:57.480Z</published>
+    <updated>2022-01-04T13:58:00.051Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;(1)用法:ajaxForm和ajaxSubmit都可以接收0或1个参数，该参数可以是一个变量，一个对象或回调函数，这个对象主要有一下参数 :&lt;/p&gt;
+&lt;pre class=&quot; language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="HTML" scheme="http://jiubanmoli.github.io/categories/HTML/"/>
+    
+    
+      <category term="html" scheme="http://jiubanmoli.github.io/tags/html/"/>
+    
+      <category term="jquery" scheme="http://jiubanmoli.github.io/tags/jquery/"/>
+    
+  </entry>
+  
+</feed>

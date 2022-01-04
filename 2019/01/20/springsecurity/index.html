@@ -1,0 +1,1337 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="关于spring security的简要介绍以及相关配置和jar包认识, 清风逐月夜半时">
+    <meta name="description" content="介绍Spring Security是一个能够为基于Spring的企业应用系统提供声明式的安全访问控制解决方案的安全框架。它提供了一组可以在Spring应用上下文中配置的Bean，充分利用了Spring IoC，DI（控制反转Inversio">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>关于spring security的简要介绍以及相关配置和jar包认识 | 清风逐月夜半时</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">清风逐月夜半时</span>
+                </a>
+            </div>
+            
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+              <a href="" class="waves-effect waves-light">
+                
+                  <i class="fa fa fa-book"></i>
+                
+                <span>媒体</span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </a>
+
+            <ul class="sub-nav menus_item_child ">
+              
+                <li> 
+                  <a href="/books" >
+                    
+                      <i class="fa fa fa-book" style="margin-top: -20px;"></i>
+                    
+                    <span>书单</span>
+                  </a>
+                </li>
+              
+                <li> 
+                  <a href="/movies" >
+                    
+                      <i class="fa fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>电影</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">清风逐月夜半时</div>
+        <div class="logo-desc">
+            
+            把努力当成一种习惯
+            
+        </div>
+    </div>
+
+    
+
+    <!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<ul class="menu-list mobile-menu-list">
+        
+            <li class="m-nav-item">
+                    
+                        <a href="/" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-home"></i>
+                            
+                            首页
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/tags" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-tags"></i>
+                            
+                            标签
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/categories" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-bookmark"></i>
+                            
+                            分类
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/archives" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-archive"></i>
+                            
+                            归档
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/about" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-user-circle-o"></i>
+                            
+                            关于我
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="/friends" class="waves-effect waves-light">
+                            
+                            <i class="fa fa-fw fa-address-book"></i>
+                            
+                            友情链接
+                        </a>
+                  
+                </li>
+            
+            <li class="m-nav-item">
+                    
+                        <a href="javascript:;">
+                                
+                                <i class="fa fa-fw fa fa-book"></i>
+                                
+                                媒体
+                                <span class="m-icon"><i class="fa fa-chevron-right"></i></span>
+                        </a>
+                    <ul>
+                      
+                        <li> 
+                          <a href="/books" >
+                               
+                                <i class="fa fa fa-book" style="left: 25px; position: absolute;"></i>
+                           
+                           <span>书单</span>
+                          </a>
+                        </li>
+                      
+                        <li> 
+                          <a href="/movies" >
+                               
+                                <i class="fa fa fa-film" style="left: 25px; position: absolute;"></i>
+                           
+                           <span>电影</span>
+                          </a>
+                        </li>
+                       
+                    </ul>
+                  
+                </li>
+            
+    
+            
+            <li><div class="divider"></div></li>
+            <li>
+                <a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="waves-effect waves-light" target="_blank">
+                    <i class="fa fa-github-square fa-fw"></i>Fork Me
+                </a>
+            </li>
+          
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        关于spring security的简要介绍以及相关配置和jar包认识
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Spring-Security/" target="_blank">
+                                <span class="chip bg-color">Spring Security</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Spring-Security/" class="post-category" target="_blank">
+                                Spring Security
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-01-20
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2,007
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        9 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Spring Security是一个能够为基于Spring的企业应用系统提供声明式的安全访问控制解决方案的安全框架。它提供了一组可以在Spring应用上下文中配置的Bean，充分利用了Spring IoC，DI（控制反转Inversion of Control ,DI:Dependency Injection 依赖注入）和AOP（面向切面编程）功能，为应用系统提供声明式的安全访问控制功能，减少了为企业系统安全控制编写大量重复代码的工作。</p>
+<p>安全主要包括两个操作，”认证和验证(权限控制)”，现在是spring security面向的两个主要方向，“认证” 是为用户建立一个他所声明的主体的过程， （“主体”一般是指用户，设备或可以在你系统中执行行动的其他系统）。 “验证”指的一个用户能否在你的应用中执行某个操作。              </p>
+<p>在身份验证层面，Spring Security广泛支持各种身份验证模式。 这些验证模型绝大多数都由第三方提供，或正在开发的有关标准机构提供的，例如Internet Engineering Task Force。 作为补充，Spring Security也提供了自己的一套验证功能。 Spring Security目前支持认证一体化和如下认证技术：</p>
+<ul>
+<li><p>HTTP BASIC authentication headers (一个基于IETF RFC的标准)</p>
+</li>
+<li><p>HTTP Digest authentication headers (一个基于IETF RFC的标准)</p>
+</li>
+<li><p>HTTP X.509 client certificate exchange (一个基于IETF RFC的标准)</p>
+</li>
+<li><p>LDAP (一个非常常见的跨平台认证需要做法，特别是在大环境)</p>
+</li>
+<li><p>Form-based authentication (提供简单用户接口的需求)</p>
+</li>
+<li><p>OpenID authentication</p>
+</li>
+<li><p>基于预先建立的请求头进行认证 （比如Computer Associates Siteminder）</p>
+</li>
+<li><p>JA-SIG Central Authentication Service (也被称为CAS，这是一个流行的开源单点登录系统)</p>
+</li>
+<li><p>Transparent authentication context propagation for Remote Method Invocation (RMI) and HttpInvoker (一个Spring远程调用协议)</p>
+</li>
+<li><p>Automatic “remember-me” authentication (这样你可以设置一段时间，避免在一段时间内还需要重新验证)</p>
+</li>
+<li><p>Anonymous authentication (允许未认证的任何调用，自动假设一个特定的安全主体)</p>
+</li>
+<li><p>Run-as authentication (这在一个会话内使用不同安全身份的时候是非常有用的)</p>
+</li>
+<li><p>Java Authentication and Authorization Service (JAAS)</p>
+</li>
+<li><p>JEE Container autentication (这样，你可以继续使用容器管理认证，如果想的话)</p>
+</li>
+<li><p>Kerberos</p>
+</li>
+<li><p>Java Open Source Single Sign On (JOSSO) *</p>
+</li>
+<li><p>OpenNMS Network Management Platform *</p>
+</li>
+<li><p>AppFuse *</p>
+</li>
+<li><p>AndroMDA *</p>
+</li>
+<li><p>Mule ESB *</p>
+</li>
+<li><p>Direct Web Request (DWR) *</p>
+</li>
+<li><p>Grails *</p>
+</li>
+<li><p>Tapestry *</p>
+</li>
+<li><p>JTrac *</p>
+</li>
+<li><p>Jasypt *</p>
+</li>
+<li><p>Roller *</p>
+</li>
+<li><p>Elastic Plath *</p>
+</li>
+<li><p>Atlassian Crowd *</p>
+</li>
+<li><p>你自己的认证系统(向下看)</p>
+</li>
+</ul>
+<p>许多独立软件供应商（ISVs, independent software vendors）采用Spring Security，是因为它拥有丰富灵活的验证模型。 这样，无论终端用户需要什么，他们都可以快速集成到系统中，不用花很多功夫，也不用让用户改变运行环境。 如果上述的验证机制都没有满足你的需要，Spring Security是一个开放的平台，编写自己的验证机制是十分简单的。 Spring Security的许多企业用户需要整合不遵循任何特定安全标准的“遗留”系统，Spring Security在这类系统上也表现的很好。</p>
+<p>Spring Security不仅提供认证功能，也提供了完备的授权功能。 在授权方面主要有三个领域，授权web请求，授权被调用方法，授权访问单个对象的实例。 为了帮你了解它们之间的区别，对照考虑授在Servlet规范web模式安全，EJB容器管理安全，和文件系统安全方面的授权方式。 Spring Security在所有这些重要领域都提供了完备的能力</p>
+<p>好了，简述到这里下面主要介绍一下spring security相关的一些jar包： </p>
+<ul>
+<li><p>1.4.1.1. Core - spring-security-core.jar</p>
+<ul>
+<li>包含了核心认证和权限控制类和接口， 运程支持和基本供应API。使用Spring Security所必须的。支持单独运行的应用， 远程客户端，方法（服务层）安全和JDBC用户供应。包含顶级包：</li>
+<li><p>org.springframework.security.core</p>
+</li>
+<li><p>org.springframework.security.access</p>
+</li>
+<li><p>org.springframework.security.authentication</p>
+</li>
+<li><p>org.springframework.security.provisioning</p>
+</li>
+</ul>
+</li>
+<li><p>1.4.1.2. 远程调用 - spring-security-remoting.jar</p>
+<ul>
+<li>提供与Spring远程调用的集成。你不需要它，除非你写了一个远程客户端 使用Spring Remoting。 主包是 org.springframework.security.remoting。</li>
+</ul>
+</li>
+<li><p>1.4.1.3. Web - spring-security-web.jar</p>
+<ul>
+<li>包含过滤器和对应的web安全架构代码。任何需要依赖servlet API的。 你将需要它，如果你需要Spring Security Web认证服务和基于URL的权限控制。 主包是org.springframework.security.web。</li>
+</ul>
+</li>
+<li><p>1.4.1.4. Config - spring-security-config.jar</p>
+<ul>
+<li>包含安全命名控制解析代码，你需要它， 如果使用了Spring Security XML命名控制来进行配置。主包是 org.springframework.security.config。这些类都不应该在应用中直接使用。</li>
+</ul>
+</li>
+<li><p>1.4.1.5. LDAP - spring-security-ldap.jar</p>
+<ul>
+<li>LDAP认证和实现代码，如果你需要使用LDAP认证或管理LDAP用户实体就是必须的。 顶级包是org.springframework.security.ldap。</li>
+</ul>
+</li>
+<li><p>1.4.1.6. ACL - spring-security-acl.jar</p>
+<ul>
+<li>处理领域对象ACL实现。用来提供安全给特定的领域对象实例，在你的应用中。 顶级包是org.springframework.security.acls。</li>
+</ul>
+</li>
+<li><p>1.4.1.7. CAS - spring-security-cas.jar</p>
+<ul>
+<li>Spring Security的CAs客户端集成。如果你希望使用Spring Security web认证 整合一个CAS单点登录服务器。顶级包是 org.springframework.security.cas。</li>
+</ul>
+</li>
+<li><p>1.4.1.8. OpenID - spring-security-openid.jar</p>
+<ul>
+<li>OpenID web认证支持。用来认证用户，通过一个外部的OpenID服务。 org.springframework.security.openid。需要OpenID4Java</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>在pom.xml中的配置如下请看:    </p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.security<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-security-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.1.2.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.security<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-security-config<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.1.2.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.security<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-security-taglibs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.1.2.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>spring security在web.xml中的配置:   </p>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- Spring Secutiry4.1的过滤器链配置 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>springSecurityFilterChain<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span>org.springframework.web.filter.DelegatingFilterProxy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-mapping</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span>springSecurityFilterChain<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-mapping</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>spring security.xml配置如下:</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/security<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xmlns:</span>beans</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>p</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/p<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>context</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/context<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans  
+          http://www.springframework.org/schema/beans/spring-beans.xsd  
+          http://www.springframework.org/schema/context  
+          http://www.springframework.org/schema/context/spring-context.xsd  
+          http://www.springframework.org/schema/security  
+          http://www.springframework.org/schema/security/spring-security.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/**/js/**/*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/**/css/**/*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/**/img/**/*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/plugins/**/*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/bootstrap/**/*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/images/**/*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/upload/**/*.*<span class="token punctuation">"</span></span> <span class="token attr-name">security</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http</span> <span class="token attr-name">auto-config</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">use-expressions</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">entry-point-ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myAuthenticationEntryPoint<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>  
+
+
+        <span class="token comment" spellcheck="true">&lt;!--配置自定义的过滤器--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>custom-filter</span> <span class="token attr-name">before</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>FILTER_SECURITY_INTERCEPTOR<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>securityInterceptor<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+
+         <span class="token comment" spellcheck="true">&lt;!-- 退出处理 --></span>  
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logout</span> <span class="token attr-name">logout-url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/j_spring_security_logout<span class="token punctuation">"</span></span>   
+                <span class="token attr-name">logout-success-url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/loginlog/logout.do<span class="token punctuation">"</span></span>   
+                <span class="token attr-name">invalidate-session</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>  <span class="token punctuation">/></span></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>custom-filter</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loginFilter<span class="token punctuation">"</span></span> <span class="token attr-name">position</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>FORM_LOGIN_FILTER<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token comment" spellcheck="true">&lt;!-- 登录成功后拒绝访问跳转的页面 --></span>         
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>access-denied-handler</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>accessDeniedHandler<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>csrf</span> <span class="token attr-name">disabled</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http</span><span class="token punctuation">></span></span>
+
+
+        <span class="token comment" spellcheck="true">&lt;!-- 自定义权限不足处理程序 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>accessDeniedHandler<span class="token punctuation">"</span></span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MyAccessDeniedHandler<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>errorPage<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/sysadmin/error.jsp?errorCode<span class="token punctuation">=</span>1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>property</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>bean</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 使用自定义类myUserDetailsService从数据库获取用户信息 --></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>authentication-manager</span> <span class="token attr-name">alias</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myAuthenticationManager<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>    
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>authentication-provider</span> <span class="token attr-name">user-service-ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myUserDetailsService<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>authentication-provider</span><span class="token punctuation">></span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>authentication-manager</span><span class="token punctuation">></span></span>  
+
+    <span class="token comment" spellcheck="true">&lt;!-- 自定义用户资源信息获取 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myUserDetailsService<span class="token punctuation">"</span></span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MyUserDetailService<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>bean</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 被认证请求根据所需权限跳转到不同的登录界面 --></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myAuthenticationEntryPoint<span class="token punctuation">"</span></span>   
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>constructor-arg</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loginFormUrl<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/login.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>constructor-arg</span><span class="token punctuation">></span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>bean</span><span class="token punctuation">></span></span>  
+
+    <span class="token comment" spellcheck="true">&lt;!-- 验证成功后操作 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationSuccessHandler<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MySimpleUrlAuthenticationSuccessHandler<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 验证失败后操作 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationFailureHandler<span class="token punctuation">"</span></span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MySimpleUrlAuthenticationFailureHandler<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>defaultFailureUrl<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/login.html<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>bean</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 自定义登陆拦截器 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loginFilter<span class="token punctuation">"</span></span>
+        <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MyAuthenticationFilter<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationManager<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myAuthenticationManager<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>filterProcessesUrl<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/j_spring_security_check<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+         <span class="token comment" spellcheck="true">&lt;!-- 认证成功用自定义类authenticationSuccessHandler处理 --></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationSuccessHandler<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationSuccessHandler<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationFailureHandler<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationFailureHandler<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>bean</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 自定义拦截器 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>securityInterceptor<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MyAuthorizationFilter<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>authenticationManager<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myAuthenticationManager<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>accessDecisionManager<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mysecurityAccessDecisionManager<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>  
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>securityMetadataSource<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>secureResourceFilterInvocationDefinitionSource<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>bean</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mysecurityAccessDecisionManager<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MyAccessDecisionManager<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">beans:</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>secureResourceFilterInvocationDefinitionSource<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.seawin.webapp.base.security.MySecurityMetadataSource<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">beans:</span>beans</span><span class="token punctuation">></span></span>
+</code></pre>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=446944158&amp;auto=1&amp;height=66"></iframe><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '40998231261191d643b7',
+        clientSecret: 'dcb34d28beb68fb1c34dd4dd9844a8da28256698',
+        repo: 'blog-comments',
+        owner: 'jiubanmoli',
+        admin: "jiubanmoli",
+        id: '2019-01-20T18-26-25',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/01/20/springsecurity-two/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="简要概述对spring security与shrio的认识与区别">
+                        
+                        <span class="card-title">简要概述对spring security与shrio的认识与区别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            最近看到项目中使用到了shrio和spring security,这两者都是对权限的控制与管理，为了了解两者的区别，查阅了相关资料，进行了一个整理:
+Apache shrio是Java的一个安全框架，但是shrio框架的一大特点强大而灵活并
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring-Security/" class="post-category" target="_blank">
+                                    Spring Security
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring-Security/" target="_blank">
+                        <span class="chip bg-color">Spring Security</span>
+                    </a>
+                    
+                    <a href="/tags/Shiro/" target="_blank">
+                        <span class="chip bg-color">Shiro</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/01/20/assert/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="关于断言机制(Assert)常用的方法">
+                        
+                        <span class="card-title">关于断言机制(Assert)常用的方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            (1) isTrue(boolean expression)
+     isTrue(boolean expression, String message)
+               当 expression 不为 true 抛出异常；
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Assert/" class="post-category" target="_blank">
+                                    Assert
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Assert/" target="_blank">
+                        <span class="chip bg-color">Assert</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 清风逐月夜半时<br />'
+            + '作者: 久伴沫离<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">45.1k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+            ICP证：<a href="http://beian.miit.gov.cn" target="_blank" class="link-color">浙ICP备18006162号-1</a>
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/jiubanmoli/jiubanmoli.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="13795376530@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 623090787" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script async src="//code.tidio.co/nfshanqdkgj092bpdbwjxtfhhopilxb7.js"></script> 
+<!-- <script>
+(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+daovoice('init', {
+    app_id: "a06ffe26"
+    });
+daovoice('update');
+</script> -->
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
